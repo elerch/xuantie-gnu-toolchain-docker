@@ -64,6 +64,7 @@ COPY --from=build /usr/local/riscv64-unknown-elf /usr/local/
 RUN true && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
+        make \
         cmake \
         && \
     apt-get clean && \
