@@ -58,14 +58,17 @@ RUN true && \
 
 FROM debian:bookworm
 
-COPY --from=build /usr/local/bin/* /usr/local/bin/
-COPY --from=build /usr/local/riscv64-unknown-elf /usr/local/
+COPY --from=build /usr/local/bin/ /usr/local/bin/
+COPY --from=build /usr/local/riscv64-unknown-elf/ /usr/local/riscv64-unknown-elf/
+COPY --from=build /usr/local/libexec/ /usr/local/libexec/
+COPY --from=build /usr/local/lib/ /usr/local/lib/
 
 RUN true && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         make \
         cmake \
+        libmpc3 \
         && \
     apt-get clean && \
     true
